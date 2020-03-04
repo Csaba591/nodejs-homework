@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hu" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css">
+    <link rel="stylesheet" href="/css/master.css">
+  </head>
+  <body>
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/admin_index.html">Tehenészet</a>
+        </div>
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">Kijelentkezés</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container elements-container">
+      <div class="has-text-centered table-container">
+        <h1 class="title has-text-light">Top tehenészek</h1>
+        <table class="table is-hoverable is-bordered is-fullwidth is-size-5">
+          <thead>
+            <tr>
+              <th>Helyezés</th>
+              <th>Tehenész neve</th>
+              <th>L tej/nap</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.</td>
+              <td>Jani</td>
+              <td>6
+                <div class="buttons has-addons is-pulled-right">
+                  <a class="button is-success" href="/admin_tehenek.html">Tehenek</a>
+                  <a class="button is-info" href="/admin_edit_tehenesz.html"><i class="far fa-edit"></i></a>
+                  <a class="button is-danger"><i class="fas fa-trash-alt"></i></a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td>Feri</td>
+              <td>4.5
+                <div class="buttons has-addons is-pulled-right">
+                  <a class="button is-success" href="/admin_tehenek.html">Tehenek</a>
+                  <a class="button is-info" href="/admin_edit_tehenesz.html"><i class="far fa-edit"></i></a>
+                  <a class="button is-danger"><i class="fas fa-trash-alt"></i></a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td>Gábor</td>
+              <td>1
+                <div class="buttons has-addons is-pulled-right">
+                  <a class="button is-success" href="/admin_tehenek.html">Tehenek</a>
+                  <a class="button is-info" href="/admin_edit_tehenesz.html"><i class="far fa-edit"></i></a>
+                  <a class="button is-danger"><i class="fas fa-trash-alt"></i></a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="/admin_new_tehenesz.html" class="button is-fullwidth">Új hozzáadása</a>
+    </div>
+  </body>
+</html>
