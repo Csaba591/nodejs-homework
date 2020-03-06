@@ -16,61 +16,64 @@
         </div>
       </div>
     </nav>
-    <div class="container elements-container columns is-8">
-      <div class="column is-one-third form-container">
-        <div class="field">
-          <label class="label is-large has-text-light" for="passwd">Admin</label>
+    <div class="wrapper">
+      <div class="container elements-container columns is-8">
+        <div class="column is-one-third form-container">
+          <div class="field">
+            <label class="label is-large has-text-light" for="passwd">Admin</label>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="password" id="passwd" placeholder="Jelszó">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+            <p class="help is-danger is-size-5 form-help">Hibás jelszó!</p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <button class="button is-fullwidth" onclick="login(document.getElementById('passwd').value)">Múúú</button>
+            </p>
+          </div>
         </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="password" id="passwd" placeholder="Jelszó">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-          <p class="help is-danger is-size-5 form-help">Hibás jelszó!</p>
-        </div>
-        <div class="field">
-          <p class="control">
-            <button class="button is-fullwidth" onclick="login(document.getElementById('passwd').value)">Múúú</button>
-          </p>
+        <div class="column has-text-centered table-container">
+          <h1 class="title has-text-light">Top tehenészek</h1>
+          <table class="table is-hoverable is-bordered is-fullwidth is-size-5">
+            <thead>
+              <tr>
+                <th>Helyezés</th>
+                <th>Tehenész neve</th>
+                <th>L tej/nap</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1.</td>
+                <td>Jani</td>
+                <td>6<a class="button is-pulled-right is-success" href="/guest/tehen/list.html">Tehenek</a></td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>Feri</td>
+                <td>4.5<a class="button is-pulled-right is-success" href="/guest/tehen/list.html">Tehenek</a></td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td>Gábor</td>
+                <td>1<a class="button is-pulled-right is-success" href="/guest/tehen/list.html">Tehenek</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="column has-text-centered table-container">
-        <h1 class="title has-text-light">Top tehenészek</h1>
-        <table class="table is-hoverable is-bordered is-fullwidth is-size-5">
-          <thead>
-            <tr>
-              <th>Helyezés</th>
-              <th>Tehenész neve</th>
-              <th>L tej/nap</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1.</td>
-              <td>Jani</td>
-              <td>6<a class="button is-pulled-right is-success" href="/guest_tehenek.html">Tehenek</a></td>
-            </tr>
-            <tr>
-              <td>2.</td>
-              <td>Feri</td>
-              <td>4.5<a class="button is-pulled-right is-success" href="/guest_tehenek.html">Tehenek</a></td>
-            </tr>
-            <tr>
-              <td>3.</td>
-              <td>Gábor</td>
-              <td>1<a class="button is-pulled-right is-success" href="/guest_tehenek.html">Tehenek</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <img class="footer" src="/img/lowpoly-cow.png" alt="Boci">
     </div>
   </body>
   <script type="text/javascript">
     const login = (password) => {
       if(password === "szojatej")
-        window.location.href = "/admin_index.html"
+        window.location.href = "admin/tehenesz/list.html"
       else {
         document.getElementById("passwd").classList.add("is-danger")
         document.getElementsByClassName("form-help")[0].style.display = "block"

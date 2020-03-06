@@ -11,13 +11,27 @@ html, body {
 
 .form-container {
   padding: 20px;
-  background-color: green;
   margin: 5% auto auto auto;
+  background-color: green;
   max-width: 500px;
 }
 
 .form-help {
   display: none;
+}
+
+.footer {
+  background-color: transparent;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  margin-left: 15%;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    display: none;
+  }
 }
 
 .button.is-success {
