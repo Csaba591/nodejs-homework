@@ -1,0 +1,42 @@
+<%- include('header') -%>
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/tehenesz">Tehenészet</a>
+      </div>
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">Kijelentkezés</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container elements-container">
+    <div class="has-text-centered table-container">
+      <h1 class="title has-text-light">Top tehenészek</h1>
+      <table class="table is-hoverable is-bordered is-fullwidth is-size-5">
+        <thead>
+          <tr>
+            <th>Helyezés</th>
+            <th>Tehenész neve</th>
+            <th>L tej/nap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(tehenesz of topteheneszek) { %>
+            <tr>
+              <td><%= tehenesz.helyezes %> </td>
+              <td><%= tehenesz.nev %> </td>
+              <td><%= tehenesz.tej %> 
+                <div class="buttons has-addons is-pulled-right">
+                  <a class="button is-success" href="/tehen/<%= tehenesz._id %>">Tehenek</a>
+                  <a class="button is-info" href="/tehenesz/edit/<%= tehenesz._id %>"><i class="far fa-edit"></i></a>
+                  <a class="button is-danger"><i class="fas fa-trash-alt"></i></a>
+                </div>
+              </td>
+            </tr>    
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <a href="/tehenesz/new" class="button is-fullwidth">Új hozzáadása</a>
+  </div>
+<%- include('footer') -%>

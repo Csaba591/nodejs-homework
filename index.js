@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser')
 
-app.use(express.static('static'));
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+
+app.use(express.static('public'));
 
 require('./route/index')(app);
 

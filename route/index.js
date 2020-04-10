@@ -14,19 +14,8 @@ const renderMW = require('../middleware/renderMW');
 module.exports = function (app) {
     const objRepo = {};
 
-    app.use('/',
-        getTopTeheneszekMW(objRepo),
-        checkPwMW(objRepo),
-        renderMW(objRepo, 'index'));
-
-    app.get('/tehenesz',
-        authMW(objRepo),
-        getTeheneszekMW(objRepo),
-        renderMW(objRepo, 'teheneszlista'));
-    app.use('/tehenesz/new',
-        authMW(objRepo),
-        saveTeheneszMW(objRepo),
-        renderMW(objRepo, 'teheneszeditnew'));
+    app.get('/favicon.ico', (req, res) => res.status(204));
+    
     app.use('/tehenesz/edit/:teheneszid',
         authMW(objRepo),
         getTeheneszMW(objRepo),
@@ -36,17 +25,15 @@ module.exports = function (app) {
         authMW(objRepo),
         getTeheneszMW(objRepo),
         delTeheneszMW(objRepo));
-
-    app.get('/tehen/:teheneszid',
+    app.use('/tehenesz/new',
         authMW(objRepo),
-        getTeheneszMW(objRepo),
-        getTeheneszekMW(objRepo),
-        renderMW(objRepo, 'egytehenesztehenei'));
-    app.use('/tehen/:teheneszid/new',
+        saveTeheneszMW(objRepo),
+        renderMW(objRepo, 'teheneszeditnew'));
+    app.get('/tehenesz',
         authMW(objRepo),
-        getTeheneszMW(objRepo),
-        saveTehenMW(objRepo),
-        renderMW(objRepo, 'teheneditnew'));
+        getTopTeheneszekMW(objRepo),
+        renderMW(objRepo, 'teheneszlist'));
+    
     app.use('/tehen/:teheneszid/edit/:tehenid',
         authMW(objRepo),
         getTeheneszMW(objRepo),
@@ -59,4 +46,24 @@ module.exports = function (app) {
         getTehenMW(objRepo),
         delTehenMW(objRepo),
         renderMW(objRepo, 'teheneditnew'));
+    app.use('/tehen/:teheneszid/new',
+        authMW(objRepo),
+        getTeheneszMW(objRepo),
+        saveTehenMW(objRepo),
+        renderMW(objRepo, 'teheneditnew'));
+    // view tehenek list without login
+    app.get('/tehen/:teheneszid/guest',
+        authMW(objRepo),
+        getTeheneszMW(objRepo),
+        renderMW(objRepo, 'tehenlist'));
+    app.get('/tehen/:teheneszid',
+        authMW(objRepo),
+        getTeheneszMW(objRepo),
+        renderMW(objRepo, 'tehenlistadmin'));  
+
+    app.use('/',
+        checkPwMW(objRepo),
+        authMW(objRepo),
+        getTopTeheneszekMW(objRepo),
+        renderMW(objRepo, 'index'));
 };

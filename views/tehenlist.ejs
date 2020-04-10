@@ -1,0 +1,36 @@
+<%- include('header') -%>
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">Tehenészet</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container elements-container">
+      <div class="has-text-centered">
+        <h1 class="title has-text-light"><%= tehenesz.nev %>  tehenei</h1>
+        <table class="table is-hoverable is-bordered is-fullwidth is-size-5">
+          <thead>
+            <tr>
+              <th>Név</th>
+              <th>Szín</th>
+              <th>Kor</th>
+              <th>L tej/nap</th>
+              <th>Közérzet</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(tehen of tehenesz.tehenek) { %>
+              <tr>
+                <td><%= tehen.nev %></td>
+                <td><%= tehen.szin %></td>
+                <td><%= tehen.kor %></td>
+                <td><%= tehen.tej %> </td>
+                <td><%= tehen.kozerzet %> </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<%- include('footer') -%>

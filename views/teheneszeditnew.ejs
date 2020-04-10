@@ -1,0 +1,30 @@
+<%- include('header') -%>
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/tehenesz">Tehenészet</a>
+      </div>
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">Kijelentkezés</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container form-container">
+    <h1 class="title has-text-light has-text-centered">
+      <% if (typeof locals.tehenesz !== 'undefined') { %>
+        <%= tehenesz.nev %> adatainak módosítása
+      <% } else { %>
+        Új tehenész felvétele
+      <% } %> 
+    </h1>
+    <form action="POST">
+      <div class="field">
+        <label class="label has-text-light is-large" for="input-name">Név</label>
+        <div class="control">
+          <input class="input" name="tehenesznev" id="input-name" type="text" value="<%= typeof locals.tehenesz === 'undefined' ? '' : tehenesz.nev %>">
+        </div>
+      </div>
+      <input type="submit" class="button is-medium is-fullwidth" href="/tehenesz" value="Mentés">
+    </form>
+  </div>
+<%- include('footer') -%>

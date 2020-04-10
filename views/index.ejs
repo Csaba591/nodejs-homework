@@ -1,0 +1,54 @@
+<%- include('header') -%> 
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">Tehenészet</a>
+      </div>
+    </div>
+  </nav>
+  <div class="wrapper">
+    <div class="container elements-container columns is-8">
+      <form class="column is-one-third form-container" method="POST">
+        <div class="field">
+          <label class="label is-large has-text-light" for="passwd">Admin</label>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="password" name="password" id="passwd" placeholder="Jelszó">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+          <p class="help is-danger is-size-5 form-help">Hibás jelszó!</p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <input class="button is-fullwidth" type="submit" value="Múúú"/>
+          </p>
+        </div>
+      </form>
+      <div class="column has-text-centered table-container">
+        <h1 class="title has-text-light">Top tehenészek</h1>
+        <table class="table is-hoverable is-bordered is-fullwidth is-size-5">
+          <thead>
+            <tr>
+              <th>Helyezés</th>
+              <th>Tehenész neve</th>
+              <th>L tej/nap</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(tehenesz of topteheneszek) { %>
+              <tr>
+                <td><%= tehenesz.helyezes %> </td>
+                <td><%= tehenesz.nev %> </td>
+                <td><%= tehenesz.tej %> <a class="button is-pulled-right is-success" href="/tehen/<%= tehenesz._id %>/guest">Tehenek</a></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <img class="footer" src="/img/lowpoly-cow.png" alt="Boci">
+  </div>
+<%- include('footer') -%>
