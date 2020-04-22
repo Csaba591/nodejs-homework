@@ -5,37 +5,30 @@
 const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
+    
+    const TeheneszModel = requireOption(objectrepository, 'TeheneszModel');
+    const TehenModel = requireOption(objectrepository, 'TehenModel');
+
     return function (req, res, next) {
-        res.locals.tehenesz = {
-            _id: 1,
-            nev: 'Jani',
-            tehenek: [
-                {
-                    _id: 1,
-                    nev: 'Boci',
-                    szin: 'fekete-fehér',
-                    kor: 6,
-                    tej: 3,
-                    kozerzet: 'fáradt'
-                },
-                {
-                    _id: 2,
-                    nev: 'Miska',
-                    szin: 'lila',
-                    kor: 4,
-                    tej: 1,
-                    kozerzet: 'szomorú'
-                },
-                {
-                    _id: 3,
-                    nev: 'Teri',
-                    szin: 'barna',
-                    kor: 4,
-                    tej: 1.5,
-                    kozerzet: 'üde'
+        console.log(req.params.teheneszid);
+        TeheneszModel.findOne({_id: req.params.teheneszid},
+            (err, tehenesz) => {
+                if(err || !tehenesz) {
+                    return next(err);
                 }
-            ]
-        }
-        next();
+                //console.log(tehenesz);
+                res.locals.tehenesz = tehenesz;
+            });
+        TehenModel.find(
+            {_tulaj: req.params.teheneszid},
+            (err, tehenek) => {
+                if(err || !tehenek) {
+                    return next(err);
+                }
+                //console.log(tehenek);
+                res.locals.tehenesz.tehenek = tehenek;
+
+                return next();
+        });
     };
 };

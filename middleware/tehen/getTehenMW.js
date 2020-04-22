@@ -5,14 +5,17 @@
 const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
+    
+    const TehenModel = requireOption(objectrepository, 'TehenModel');
+
     return function (req, res, next) {
-        res.locals.tehen = {
-            nev: 'Boci',
-            szin: 'fekete-fehér',
-            kor: 6,
-            tej: 3,
-            kozerzet: 'fáradt'
-        }
-        next();
+        TehenModel.findOne({_id: req.params.tehenid},
+            (err, tehen) => {
+                if(err || !tehen) {
+                    return next(err);
+                }
+                res.locals.tehen = tehen;
+                return next();
+        });
     };
 };

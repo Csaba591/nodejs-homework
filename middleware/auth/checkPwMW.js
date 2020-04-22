@@ -7,9 +7,13 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
+        if(typeof req.body.password === 'undefined')
+            return next();
+
         if(req.body.password === 'szojatej') {
             return res.redirect('/tehenesz');
         }
+        res.locals.error = 'Hibás jelszó';
         next();
     };
 };

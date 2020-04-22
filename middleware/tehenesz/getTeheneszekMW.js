@@ -5,24 +5,16 @@
 const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
+    
+    const TeheneszModel = requireOption(objectrepository, 'TeheneszModel');
+
     return function (req, res, next) {
-        res.locals.teheneszek = [
-            {
-                nev: 'Jani',
-                tej: 6,
-                tehenek: {}
-            },
-            {
-                nev: 'Feri',
-                tej: 4.5,
-                tehenek: {}
-            },
-            {
-                nev: 'Gábor',
-                tej: 1,
-                tehenek: {}
+        TeheneszModel.find({}, (err, teheneszek) => {
+            if(err) {
+                return next(err);
             }
-        ]
-        next();
+            res.locals.teheneszek = teheneszek;
+            return next();
+        });
     };
 };

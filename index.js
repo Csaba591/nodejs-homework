@@ -10,6 +10,10 @@ app.use(express.static('public'));
 
 require('./route/index')(app);
 
+app.use((err, req, res, next) => {
+    console.log(err);
+});
+
 app.listen(3000, function () {
     console.log('Hello :3000');
 });

@@ -11,8 +11,14 @@ const getTopTeheneszekMW = require('../middleware/tehenesz/getTopTeheneszekMW');
 const saveTeheneszMW = require('../middleware/tehenesz/saveTeheneszMW');
 const renderMW = require('../middleware/renderMW');
 
+const TeheneszModel = require('../models/tehenesz');
+const TehenModel = require('../models/tehen');
+
 module.exports = function (app) {
-    const objRepo = {};
+    const objRepo = {
+        TeheneszModel: TeheneszModel,
+        TehenModel: TehenModel
+    };
 
     app.get('/favicon.ico', (req, res) => res.status(204));
     
@@ -31,7 +37,7 @@ module.exports = function (app) {
         renderMW(objRepo, 'teheneszeditnew'));
     app.get('/tehenesz',
         authMW(objRepo),
-        getTopTeheneszekMW(objRepo),
+        getTeheneszekMW(objRepo),
         renderMW(objRepo, 'teheneszlist'));
     
     app.use('/tehen/:teheneszid/edit/:tehenid',

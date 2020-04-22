@@ -16,10 +16,6 @@ html, body {
   max-width: 500px;
 }
 
-.form-help {
-  display: none;
-}
-
 .footer {
   background-color: transparent;
   padding: 0;
