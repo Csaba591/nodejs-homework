@@ -11,7 +11,8 @@ app.use(express.static('public'));
 require('./route/index')(app);
 
 app.use((err, req, res, next) => {
-    console.log(err);
+    console.log(err.stack);
+    res.end("Hiba...");
 });
 
 app.listen(3000, function () {

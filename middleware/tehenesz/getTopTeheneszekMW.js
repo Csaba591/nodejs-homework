@@ -6,8 +6,6 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        
-        
         res.locals.topteheneszek = [
             {
                 _id: 1,
