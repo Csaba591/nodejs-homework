@@ -6,7 +6,8 @@ const requireOption = require('./requireOption');
 
 module.exports = function (objectrepository, viewName) {
     return function (req, res) {
-        console.log('render: ' + viewName);
+        res.locals.belepve = req.session.belepve;
+        res.locals.errors = req.flash('errors');
         res.render(viewName, res.locals);
     };
 };

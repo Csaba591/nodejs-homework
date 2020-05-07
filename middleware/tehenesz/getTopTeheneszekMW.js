@@ -5,27 +5,45 @@
 const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
+    const TehenModel = requireOption(objectrepository, 'TehenModel');
     return function (req, res, next) {
-        res.locals.topteheneszek = [
-            {
-                _id: 1,
-                nev: 'Jani',
-                tej: 6,
-                helyezes: 1
-            },
-            {
-                _id: 2,
-                nev: 'Feri',
-                tej: 4.5,
-                helyezes: 2
-            },
-            {
-                _id: 3,
-                nev: 'Gábor',
-                tej: 1,
-                helyezes: 3
-            }
-        ]
-        next();
+        TehenModel.aggregate(
+            [
+                {
+                    $group: {
+                        _id: '$_tulaj',
+                        sum: {
+                            $sum: '$tej'
+                        }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'teheneszs',
+                        localField: '_id',
+                        foreignField: '_id',
+                        as: 'tulaj'
+                    }
+                },
+                {
+                    $sort: {
+                        sum: -1
+                    }
+                },
+                {
+                    $limit: 5
+                },
+                { $unwind: { path: '$tulaj' } }
+            ],
+            (err, result) => {
+                if (err) {
+                    return next(err);
+                }
+                res.locals.topteheneszek = result.map(e => {
+                    return { nev: e.tulaj.nev, tej: e.sum, _id: e._id };
+                });
+                return next();
+            }    
+        )
     };
 };

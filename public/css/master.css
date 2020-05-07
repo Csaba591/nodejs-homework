@@ -30,6 +30,16 @@ html, body {
   }
 }
 
+#tehenesz-list {
+  width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  #tehenesz-list {
+    width: 100%;
+  }
+}
+
 .button.is-success {
   background-color: green;
 }

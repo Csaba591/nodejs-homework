@@ -10,13 +10,11 @@ module.exports = function (objectrepository) {
     const TehenModel = requireOption(objectrepository, 'TehenModel');
 
     return function (req, res, next) {
-        console.log(req.params.teheneszid);
         TeheneszModel.findOne({_id: req.params.teheneszid},
             (err, tehenesz) => {
                 if(err || !tehenesz) {
                     return next(err);
                 }
-                //console.log(tehenesz);
                 res.locals.tehenesz = tehenesz;
             });
         TehenModel.find(
@@ -25,7 +23,6 @@ module.exports = function (objectrepository) {
                 if(err || !tehenek) {
                     return next(err);
                 }
-                //console.log(tehenek);
                 res.locals.tehenesz.tehenek = tehenek;
 
                 return next();

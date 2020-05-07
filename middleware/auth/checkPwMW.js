@@ -11,9 +11,10 @@ module.exports = function (objectrepository) {
             return next();
 
         if(req.body.password === 'szojatej') {
+            req.session.belepve = true;
             return res.redirect('/tehenesz');
         }
-        res.locals.error = 'Hibás jelszó';
+        req.flash('errors', 'Hibás jelszó!');
         next();
     };
 };

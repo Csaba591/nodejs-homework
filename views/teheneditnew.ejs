@@ -1,14 +1,4 @@
 <%- include('header') -%>
-  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/tehenesz">Tehenészet</a>
-      </div>
-      <div class="navbar-start">
-        <a class="navbar-item" href="/">Kijelentkezés</a>
-      </div>
-    </div>
-  </nav>
   <div class="container form-container">
     <h1 class="title has-text-light has-text-centered">
       <% if (typeof locals.tehen !== 'undefined') { %>
@@ -17,35 +7,40 @@
         Új tehén felvétele
       <% } %> 
     </h1>
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <% for(error of errors) { %>
+        <p><%= error %></p>
+      <% } %>
+    <% } %>
     <form method="POST">
       <div class="field">
         <label class="label has-text-light is-large" for="input-name">Név</label>
         <div class="control">
-          <input class="input" name="nev" id="input-name" type="text" value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.nev : '' %>" placeholder="pl. Boci">
+          <input class="input" name="nev" id="input-name" type="text" required value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.nev : '' %>" placeholder="pl. Boci">
         </div>
       </div>
       <div class="field">
         <label class="label has-text-light is-large" for="input-color">Szín</label>
         <div class="control">
-          <input class="input" name="szin" id="input-color" type="text" value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.szin : '' %>" placeholder="pl. tarka">
+          <input class="input" name="szin" id="input-color" type="text" required value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.szin : '' %>" placeholder="pl. tarka">
         </div>
       </div>
       <div class="field">
         <label class="label has-text-light is-large" for="input-age">Kor</label>
         <div class="control">
-          <input class="input" name="kor" id="input-age" type="text" value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.kor : '' %>" placeholder="pl. 8">
+          <input class="input" name="kor" id="input-age" type="text" required value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.kor : '' %>" placeholder="pl. 8">
         </div>
       </div>
       <div class="field">
         <label class="label has-text-light is-large" for="input-milk">L tej/nap</label>
         <div class="control">
-          <input class="input" name="tej" id="input-milk" type="text" value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.tej : '' %>" placeholder="pl. 3.5">
+          <input class="input" name="tej" id="input-milk" type="text" required value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.tej : '' %>" placeholder="pl. 3.5">
         </div>
       </div>
       <div class="field">
         <label class="label has-text-light is-large" for="input-mood">Közérzet</label>
         <div class="control">
-          <input class="input" name="kozerzet" id="input-mood" type="text" value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.kozerzet : '' %>" placeholder="pl. in a good mooood (hehe)">
+          <input class="input" name="kozerzet" id="input-mood" type="text" required value="<%= typeof locals.tehen !== 'undefined' ? locals.tehen.kozerzet : '' %>" placeholder="pl. in a good mooood (hehe)">
         </div>
       </div>
       <input type="submit" href="/tehen/<%= locals.tehenesz._id %>" class="button is-medium is-fullwidth" value="Mentés">

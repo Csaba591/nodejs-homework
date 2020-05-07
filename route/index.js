@@ -1,5 +1,6 @@
 const authMW = require('../middleware/auth/authMW');
 const checkPwMW = require('../middleware/auth/checkPwMW');
+const logoutMW = require('../middleware/auth/logoutMW');
 const delTehenMW = require('../middleware/tehen/delTehenMW');
 const getTehenekMW = require('../middleware/tehen/getTehenekMW');
 const getTehenMW = require('../middleware/tehen/getTehenMW');
@@ -59,7 +60,6 @@ module.exports = function (app) {
         renderMW(objRepo, 'teheneditnew'));
     // view tehenek list without login
     app.get('/tehen/:teheneszid/guest',
-        authMW(objRepo),
         getTeheneszMW(objRepo),
         renderMW(objRepo, 'tehenlist'));
     app.get('/tehen/:teheneszid',
@@ -67,9 +67,10 @@ module.exports = function (app) {
         getTeheneszMW(objRepo),
         renderMW(objRepo, 'tehenlistadmin'));  
 
+    app.use('/logout', logoutMW(objRepo));
+    
     app.use('/',
         checkPwMW(objRepo),
-        authMW(objRepo),
         getTopTeheneszekMW(objRepo),
         renderMW(objRepo, 'index'));
 };

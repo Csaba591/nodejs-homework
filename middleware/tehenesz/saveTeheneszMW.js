@@ -23,7 +23,6 @@ module.exports = function (objectrepository) {
 
         res.locals.tehenesz.save((err) => {
             if(err) {
-                console.log('HIBAAAA');
                 return next(err);
             }
             return res.redirect('/tehenesz');

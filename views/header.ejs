@@ -8,3 +8,15 @@
     <link rel="stylesheet" type="text/css" href="/css/master.css">
   </head>
   <body>
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/tehenesz">Tehenészet</a>
+        </div>
+        <% if (typeof belepve !== 'undefined' && belepve === true) { %>
+          <div class="navbar-start">
+            <a class="navbar-item" href="/logout">Kijelentkezés</a>
+          </div>
+        <% } %>
+      </div>
+    </nav>

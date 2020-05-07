@@ -1,17 +1,7 @@
 <%- include('header') -%>
-  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/tehenesz">Tehenészet</a>
-      </div>
-      <div class="navbar-start">
-        <a class="navbar-item" href="/">Kijelentkezés</a>
-      </div>
-    </div>
-  </nav>
   <div class="container form-container">
     <h1 class="title has-text-light has-text-centered">
-      <% if (typeof locals.tehenesz !== 'undefined') { console.log(typeof locals.tehenesz);  %>
+      <% if (typeof locals.tehenesz !== 'undefined') { %>
         <%= locals.tehenesz.nev %> adatainak módosítása
       <% } else { %>
         Új tehenész felvétele
@@ -21,11 +11,11 @@
       <div class="field">
         <label class="label has-text-light is-large" for="input-name">Név</label>
         <div class="control">
-          <input class="input" name="nev" id="input-name" type="text" value="<%= typeof locals.tehenesz === 'undefined' ? '' : locals.tehenesz.nev %>">
+          <input class="input" name="nev" id="input-name" type="text" required value="<%= typeof locals.tehenesz === 'undefined' ? '' : locals.tehenesz.nev %>">
         </div>
         <label class="label has-text-light is-large" for="input-name">Telefonszám</label>
         <div class="control">
-          <input class="input" name="tel" id="input-name" type="text" value="<%= typeof locals.tehenesz === 'undefined' ? '' : locals.tehenesz.tel %>">
+          <input class="input" name="tel" id="input-name" type="text" required value="<%= typeof locals.tehenesz === 'undefined' ? '' : locals.tehenesz.tel %>">
         </div>
       </div>
       <input type="submit" class="button is-medium is-fullwidth" href="/tehenesz" value="Mentés">

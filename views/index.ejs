@@ -1,11 +1,4 @@
-<%- include('header') -%> 
-  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">Tehenészet</a>
-      </div>
-    </div>
-  </nav>
+<%- include('header') -%>
   <div class="wrapper">
     <div class="container elements-container columns is-8">
       <form class="column is-one-third form-container" method="POST">
@@ -14,13 +7,13 @@
         </div>
         <div class="field">
           <p class="control has-icons-left">
-            <input class="input" type="password" name="password" id="passwd" placeholder="Jelszó">
+            <input class="input" type="password" name="password" id="passwd" placeholder="Jelszó" required>
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
           </p>
-          <% if (typeof error !== 'undefined') { %>
-            <p class="help is-danger is-size-5 form-help"><%= error %></p>
+          <% if (typeof errors !== 'undefined') { %>
+            <p class="help is-danger is-size-5 form-help"><b><%= errors[0] %></b></p>
           <% } %>
         </div>
         <div class="field">
@@ -40,11 +33,16 @@
             </tr>
           </thead>
           <tbody>
+            <% let i = 1 %> 
             <% for(tehenesz of topteheneszek) { %>
               <tr>
-                <td><%= tehenesz.helyezes %> </td>
+                <td><%= i++ %>. </td>
                 <td><%= tehenesz.nev %> </td>
-                <td><%= tehenesz.tej %> <a class="button is-pulled-right is-success" href="/tehen/<%= tehenesz._id %>/guest">Tehenek</a></td>
+                <td><%= tehenesz.tej %>
+                  <a class="button is-pulled-right is-success" href="/tehen/<%= tehenesz._id %>/guest">
+                    Tehenek
+                  </a>
+                </td>
               </tr>
             <% } %>
           </tbody>

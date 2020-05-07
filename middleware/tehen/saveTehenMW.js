@@ -18,6 +18,16 @@ module.exports = function (objectrepository) {
             return next();
         }
 
+        if(isNaN(req.body.kor) || isNaN(req.body.tej)) {
+            let errors = [];
+            if(isNaN(req.body.kor))
+                errors.push('A kort számmal add meg!');
+            if(isNaN(req.body.tej))
+                errors.push('A L tej/nap-ot számmal add meg!');
+            req.flash('errors', errors);
+            return res.redirect('back');
+        }
+        
         if(typeof res.locals.tehen === 'undefined') {
             res.locals.tehen = new TehenModel();
         }
@@ -29,14 +39,10 @@ module.exports = function (objectrepository) {
         res.locals.tehen.kozerzet = req.body.kozerzet;
         res.locals.tehen._tulaj = res.locals.tehenesz._id;
 
-        //console.log(res.locals.tehen);
         res.locals.tehen.save((err) => {
             if(err) {
-                console.log('HIBAAAA');
-
                 return next(err);
             }
-            //console.log(res.locals.tehenesz._id + '---');
             return res.redirect('/tehen/' + res.locals.tehenesz._id);
         })
     };
