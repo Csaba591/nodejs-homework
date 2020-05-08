@@ -1,7 +1,7 @@
 <%- include('header') -%>
   <div class="container elements-container">
-    <div class="has-text-centered">
-      <h1 class="title has-text-light"><%= tehenesz.nev %>  tehenei</h1>
+    <div class="table-container has-text-centered">
+      <h1 class="title has-text-light"><%= tehenesz.nev %> tehenei</h1>
       <table class="table is-hoverable is-bordered is-fullwidth is-size-5">
         <thead>
           <tr>
@@ -18,12 +18,22 @@
               <td><%= tehen.nev %></td>
               <td><%= tehen.szin %></td>
               <td><%= tehen.kor %></td>
-              <td><%= tehen.tej %> </td>
-              <td><%= tehen.kozerzet %> </td>
+              <td><%= tehen.tej %></td>
+              <td><%= tehen.kozerzet %>
+                <% if (typeof belepve !== 'undefined' && belepve === true) { %>
+                  <div class="buttons has-addons is-pulled-right">
+                    <a class="button is-info" href="/tehen/<%= tehenesz._id %>/edit/<%= tehen._id %>"><i class="far fa-edit"></i></a>
+                    <a class="button is-danger" href="/tehen/<%= tehenesz._id %>/del/<%= tehen._id %>"><i class="fas fa-trash-alt"></i></a>
+                  </div>
+                <% } %>
+              </td>
             </tr>
           <% } %>
         </tbody>
       </table>
-    </div>
-  </div>
-<%- include('footer') -%>
+    <% if (typeof belepve !== 'undefined' && belepve === true) { %>
+      </div>
+        <a href="/tehen/<%= tehenesz._id %>/new" class="button is-fullwidth">Új hozzáadása</a>
+      </div>
+    <% } %>
+  <%- include('footer') -%>

@@ -58,14 +58,10 @@ module.exports = function (app) {
         getTeheneszMW(objRepo),
         saveTehenMW(objRepo),
         renderMW(objRepo, 'teheneditnew'));
-    // view tehenek list without login
-    app.get('/tehen/:teheneszid/guest',
-        getTeheneszMW(objRepo),
-        renderMW(objRepo, 'tehenlist'));
     app.get('/tehen/:teheneszid',
-        authMW(objRepo),
         getTeheneszMW(objRepo),
-        renderMW(objRepo, 'tehenlistadmin'));  
+        getTehenekMW(objRepo),
+        renderMW(objRepo, 'tehenlist'));  
 
     app.use('/logout', logoutMW(objRepo));
     
