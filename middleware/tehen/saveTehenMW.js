@@ -18,12 +18,12 @@ module.exports = function (objectrepository) {
             return next();
         }
 
-        if(isNaN(req.body.kor) || isNaN(req.body.tej)) {
-            let errors = [];
-            if(isNaN(req.body.kor))
-                errors.push('A kort számmal add meg!');
-            if(isNaN(req.body.tej))
-                errors.push('A L tej/nap-ot számmal add meg!');
+        let errors = [];
+        if(isNaN(req.body.kor))
+            errors.push('A kort számmal add meg!');
+        if(isNaN(req.body.tej))
+            errors.push('A L tej/nap-ot számmal add meg!');
+        if(errors.length > 0) {
             req.flash('errors', errors);
             return res.redirect('back');
         }
